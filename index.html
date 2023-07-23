@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-LWZJTCMLQ0"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LWZJTCMLQ0');
+</script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-PY99WRQRT8"></script><script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PY99WRQRT8');
+</script><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SAMPLING: Scene-adaptive Hierarchical Multiplane Images Representation for Novel View Synthesis from a Single Image</title>
+	<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet" />
+	<link href="web/offcanvas.css" rel="stylesheet" />
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+<h2>SAMPLING: Scene-adaptive Hierarchical Multiplane Images Representation for Novel View Synthesis from a Single Image</h2>
+
+<h3>ICCV 2023</h3> 
+<hr />
+<p class="authors">Xiaoyu Zhou<sup>1</sup>, Zhiwei Lin<sup>1</sup>, Xiaojun Shan<sup>1</sup>, Yongtao Wang<sup>1</sup>, Deqing Sun<sup>2</sup>, Ming-Hsuan Yang<sup>3</sup></p>
+
+<p class="author-affiliation"><sup>1</sup>Wangxuan Institute of Computer Technology, Peking Univerisity, <sup>2</sup> Google Research, <sup>3</sup>University of California, Merced</p>
+
+<div aria-label="Top menu" class="btn-group" role="group"><a class="btn btn-primary" href="materialistic_camera_ready.pdf">Paper</a></div>
+
+<div aria-label="Top menu" class="btn-group" role="group"><a class="btn btn-primary" href="materialistic_supplementary.pdf">Supplementary</a></div>
+
+<div aria-label="Top menu" class="btn-group" role="group"><a class="btn btn-primary disabled" href="">Code (Coming soon)</a></div>
+
+<div aria-label="Top menu" class="btn-group" role="group"><a class="btn btn-primary disabled" href="">Data (Coming soon)</a></div>
+</div>
+</div>
+
+<div class="container">
+<div class="section"><img src="web/img/teaser.png" style="margin-bottom:2em;" width="100%" /> <!-- Add vertical space -->
+<h3>Abstract</h3>
+
+<p>Recent novel view synthesis methods obtain promising results for relatively small scenes, e.g., indoor environments and scenes with a few objects, but tend to fail for unbounded outdoor scenes with a single image as input. In this paper, we introduce SAMPLING, a Scene-adaptive Hierarchical Multiplane Images Representation for Novel View Synthesis from a Single Image based on improved multiplane images (MPI). Observing that depth distribution varies significantly for unbounded outdoor scenes, we employ an adaptive-bins strategy for MPI to arrange planes in accordance with each scene image. To represent intricate geometry and multi-scale details, we further introduce a hierarchical refinement branch, which results in high-quality synthesized novel views. Our method demonstrates considerable performance gains in synthesizing large-scale unbounded outdoor scenes using a single image on the KITTI dataset and generalizes well to the unseen Tanks and Temples dataset. The code and models will be made public.</p>
+</div>
+
+<hr /></div>
+
+<div class="container">
+<div class="section">
+<h3>Material selection evaluation on real data</h3>
+<img src="web/img/qualitative_results.png" width="100%" />
+<p>An array of results on the real image dataset for our method and the baselines and ablations are presented on this webpage:</p>
+
+<div class="row">
+<div class="col-sm-6" style="text-align: center;"><a aria-pressed="true" class="btn btn-primary btn-lg active" href="./web/results/results.html" role="button">VIEW RESULTS BY CLICKING HERE</a></div>
+
+<div class="col-sm-6" style="text-align: center;"><a aria-pressed="true" class="btn btn-primary btn-lg active" href="./web/results/comparisons.html" role="button">VIEW COMPARISON RESULTS BY CLICKING HERE</a></div>
+</div>
+
+<hr />
+<div class="section">
+<h3>Material selection in videos</h3>
+
+<p>Given a  on the first frame of, our method can be applied to select the material at the query point in each frame. Note how the selections are robust to lighting variations including specularity and shadows.</p>
+
+<div class="row">
+<div class="col-sm-3" style="text-align: center;">
+<h6>First frame with query in red</h6>
+</div>
+
+<div class="col-sm-3" style="text-align: center;">
+<h6>Input video</h6>
+</div>
+
+<div class="col-sm-3" style="text-align: center;">
+<h6>Predicted material selection</h6>
+</div>
+
+<div class="col-sm-3" style="text-align: center;">
+<h6>Output scores</h6>
+</div>
+</div>
+
+<video autoplay="true" class="video" loop="true" muted="" playsinline=""><source src="web/videos/video_1.mp4" /></video>
+
+<video autoplay="true" class="video" loop="true" muted="" playsinline=""><source src="web/videos/video_2.mp4" /></video>
+
+<video autoplay="true" class="video" loop="true" muted="" playsinline="" width="100%"><source src="web/videos/video_3.mp4" /></video>
+
+<video autoplay="true" class="video" loop="true" muted="" playsinline="" width="100%"><source src="web/videos/video_4.mp4" /></video>
+
+<hr /></div>
+
+<div class="section">
+<h3>Demo video: Enabling multiple material selection</h3>
+
+<p>To empower artists, in an interactive demo, we allow users to select multiple positive (first video) and negative (second video) query points. The resulting score map for positive query points are combined by taking the maximum of the individually predicted similarity scores for each pixel, and thresholded by user defined value in [0, 1]. The predicted scores corresponding to negative samples are combined by computing a per-pixel maximum across all predicted scores of negative regions, and are then thresholded by the user using a separate threshold value. The intersection of the resulting mask with the mask computed using positive query points is removed from the final selection.</p>
+
+<h4>Multiple selection</h4>
+
+<video autoplay="true" class="video" loop="true" muted="" width="100%"><source src="web/videos/positive_trim_crop.mp4" /></video>
+
+<hr />
+<h4>Negative selection</h4>
+
+<video autoplay="true" class="video" loop="true" muted="" width="100%"><source src="web/videos/negative_trim_crop.mp4" /></video>
+</div>
+
+<hr />
+<div class="section">
+<h3>Image editing</h3>
+
+<p>Outputs from our method can be used as input for material selection based image editing using Photoshop, Image-Based Material Editing (Khan et al. [2006]), and Stable Diffusion Inpainting [Rombach et al . 2021].</p>
+<img src="web/img/editing_horizontal.png" width="100%" /></div>
+
+<hr />
+<div class="section">
+<h3>Results on grayscale images</h3>
+
+<p>We further evaluate our method on grayscale images and see that if textures are clearly distinct, our method can select the relevant regions despite the lack of color, showing it also considers texture to make its selection.</p>
+<img src="web/img/grayscale_results.png" width="100%" /></div>
+
+<hr />
+
+<div class="section row align-items-center">
+<h3>Selection consistency</h3>
+
+<p>The method produces consistent segmentation masks for different pixel selections within image regions that belong to the same material. In the query image, we show 5 different pixel selections (marked in different colors) with the resulting masks overlayed with the respective color.</p>
+<img src="web/img/consistency_fullwidth.png" width="100%" /></div>
+<hr />
+
+<div class="section row align-items-center">
+<h3>Robustness to lighting variation</h3>
+
+<p>Our method is robust to lighting variations including specularity and shadows. The first row shows all the input images. There is a query selected in the first image with a selection marked with a red square. The selected pixel is at the center of the red square. The query embedding at the selection at the red square is used to select materials in subsequent images. The results show the robustness of our method to different lighting scenarios.</p>
+<img src="web/img/lighting_analysis.png" width="100%" /></div>
+
+<div class="section row align-items-center">
+<p>We also present the same experiment to demonstrate the robustness of our method to different lighting scenarios using the Multi-Illumination Dataset by Murmann et al.</p>
+<img src="web/img/murmann_dataset_lighting_results.png" width="100%" /></div>
+
+<hr />
+<div class="section">
+<h3>Analysis: Albedo analysis</h3>
+
+<p>To analyze the behavior of the model with respect to changing albedo, we change the hue and saturation value on a diffuse sphere. The hue is sampled in range [0, 2*pi] and saturation is sampled in [0, 1]. We select the central pixel on a grid of spheres with varying albedo. The scores are thresholded at 0.5 which results in selections of regions in spheres with neighboring albedo. As expected, our model selects sphere with colors closer to the selected one first. As we vary the threshold, the selection becomes limited to the central sphere (higher threshold &gt; 0.9), or extends to further spheres (lower threshold).</p>
+<img src="web/img/albedo_analysis.png" width="100%" />
+<hr /></div>
+
+<div class="section">
+<h3>Analysis: Blending between materials</h3>
+
+<p>We now evaluate the sensitivity of our model to gradual material changes. To do so we render nine spheres covered by a blend of two different materials, a stone wall and roof tiles. We use the Blender &quot;shader mix&quot; node to interpolate between the SVBRDFs and apply a different mixing factor for each sphere, this mixing is shown below. Where 1.0 means 100% wall and 0.0 means 100% tiles.</p>
+
+<div class="text-center"><img src="web/img/test_checker_interop.png" width="50%" /></div>
+
+<p>We then proceed to select similar materials based on a query pixel on each extreme case. As we can see our method selects materials that are close to the query but not exactly similar and discriminates well when the mix of materials is visually far from the query.</p>
+<img src="web/img/brdf_blend.png" width="100%" />
+<hr /></div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script></div>
+</div>
+</body>
+</html>
